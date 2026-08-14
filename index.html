@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Company dashboard showing key metrics and recent activity" />
+    <title>Dashboard — MyCompany</title>
+    <link rel="icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <!-- Chart.js CDN for professional charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar" role="banner">
+        <div class="brand">MyCompany</div>
+        <div class="top-controls">
+            <div class="search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.5"/></svg>
+                <input placeholder="Search" aria-label="Search" />
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <a href="index.html" class="active" aria-current="page">Dashboard</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="profile" aria-hidden="false">
+                <button class="icon-btn" title="Notifications">🔔</button>
+                <button class="icon-btn" title="Account">JD</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="overview" aria-label="Overview">
+            <div class="card metrics" role="region" aria-labelledby="metrics-heading">
+                <h3 id="metrics-heading" class="visually-hidden">Key metrics</h3>
+                <div class="metric">
+                    <div class="metric-head"><span class="icon">👥</span><h4>Users</h4></div>
+                    <p id="metric-users" class="value">1,240</p>
+                    <p class="muted">+4.2% since last week</p>
+                </div>
+                <div class="metric">
+                    <div class="metric-head"><span class="icon">💳</span><h4>Revenue</h4></div>
+                    <p id="metric-revenue" class="value">$12,430</p>
+                    <p class="muted">$1,120 in new sales</p>
+                </div>
+                <div class="metric">
+                    <div class="metric-head"><span class="icon">⚡</span><h4>Active</h4></div>
+                    <p id="metric-active" class="value">87%</p>
+                    <p class="muted">Sessions are stable</p>
+                </div>
+            </div>
+
+            <div class="card chart" role="region" aria-labelledby="chart-heading">
+                <h4 id="chart-heading">Sales (last 30 days)</h4>
+                <canvas id="salesChart" aria-label="Sales in the last 30 days" height="120"></canvas>
+            </div>
+        </section>
+
+        <section class="details">
+            <div class="card services">
+                <h4>Services</h4>
+                <ul>
+                    <li><strong>Service A</strong><span class="badge success">Operational</span></li>
+                    <li><strong>Service B</strong><span class="badge">Running</span></li>
+                    <li><strong>Service C</strong><span class="badge muted">Maintenance</span></li>
+                </ul>
+            </div>
+
+            <div class="card products">
+                <h4>Recent Activity</h4>
+                <table>
+                    <thead>
+                        <tr><th>User</th><th>Action</th><th>When</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="user"><div class="avatar">A</div>Alice</td><td>Signed up</td><td>2h ago</td></tr>
+                        <tr><td class="user"><div class="avatar">B</div>Bob</td><td>Purchased</td><td>1d ago</td></tr>
+                        <tr><td class="user"><div class="avatar">C</div>Clara</td><td>Updated plan</td><td>3d ago</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">© 2026 MyCompany</footer>
+
+    <script>
+        // Populate metrics and render a small line chart using Chart.js
+        (function(){
+            const users = 1240;
+            const revenue = 12430;
+            const active = 87;
+            document.getElementById('metric-users').textContent = users.toLocaleString();
+            document.getElementById('metric-revenue').textContent = '$' + revenue.toLocaleString();
+            document.getElementById('metric-active').textContent = active + '%';
+
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length:30}, (_,i)=> i+1),
+                    datasets: [{
+                        label: 'Sales',
+                        data: [10,12,9,14,16,13,18,20,19,23,22,24,26,28,27,30,29,31,33,32,35,34,36,38,40,42,44,43,45,47],
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99,102,241,0.12)',
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive:true,
+                    maintainAspectRatio:false,
+                    scales:{
+                        x:{display:false},
+                        y:{display:false}
+                    },
+                    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}}
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
