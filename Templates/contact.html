@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --primary: #1f3a5f;
+            --primary-soft: #eaf1ff;
+            --accent: #4f8cff;
+            --text: #1d2433;
+            --muted: #5f6f86;
+            --line: #dde6f2;
+            --shadow: 0 18px 45px rgba(31, 58, 95, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+            color: var(--text);
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 20px 60px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            margin-bottom: 20px;
+        }
+
+        .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--primary);
+        }
+
+        .nav {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .nav a {
+            padding: 10px 16px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .nav a.active,
+        .nav a:hover {
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            margin: 0;
+            line-height: 1.7;
+            color: var(--muted);
+            font-size: 1.04rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #2b5c9d 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .info-box strong {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 26px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 18px;
+        }
+
+        .contact-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--primary-soft);
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .detail-label {
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        label {
+            display: grid;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input, textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font: inherit;
+            background: #f8fbff;
+            color: var(--text);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.12);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            width: fit-content;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent) 0%, #2f67d9 100%);
+            color: white;
+            padding: 14px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(79, 140, 255, 0.3);
+        }
+
+        @media (max-width: 760px) {
+            .hero, .content, .row {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                gap: 14px;
+                align-items: flex-start;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="topbar">
+            <div class="brand">MY COMPANY</div>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('contact') }}" class="active">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div>
+                    <span class="eyebrow">Let's talk</span>
+                    <h1>We’d love to hear from you.</h1>
+                    <p>
+                        Whether you want to discuss a project, ask a question, or explore a partnership,
+                        our team is ready to help.
+                    </p>
+                </div>
+
+                <aside class="info-box">
+                    <div class="label">Response time</div>
+                    <strong>Within 1 business day</strong>
+                    <div>Available Monday to Friday, 9:00 AM – 5:00 PM</div>
+                </aside>
+            </section>
+
+            <section class="content">
+                <div class="card">
+                    <h2>Contact information</h2>
+                    <ul class="contact-list">
+                        <li>
+                            <div class="icon">📍</div>
+                            <div>
+                                <div class="detail-label">Office</div>
+                                <p class="detail-value">1280 Market Street, Suite 400<br>San Francisco, CA</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">📞</div>
+                            <div>
+                                <div class="detail-label">Phone</div>
+                                <p class="detail-value">+1 (415) 555-0198</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">✉️</div>
+                            <div>
+                                <div class="detail-label">Email</div>
+                                <p class="detail-value">hello@mycompany.com</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>Send a message</h2>
+                    <form>
+                        <div class="row">
+                            <label>
+                                Full name
+                                <input type="text" placeholder="Jane Doe" />
+                            </label>
+                            <label>
+                                Email
+                                <input type="email" placeholder="jane@email.com" />
+                            </label>
+                        </div>
+
+                        <label>
+                            Subject
+                            <input type="text" placeholder="Project inquiry" />
+                        </label>
+
+                        <label>
+                            Message
+                            <textarea placeholder="Tell us a little about your project..."></textarea>
+                        </label>
+
+                        <button type="submit">Send message</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
